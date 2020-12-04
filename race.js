@@ -69,6 +69,7 @@ const runTest = async () => {
 
     const len = 500;
     const functions = new Array(len).fill(toggler);
+    console.info(`Running ${len} concurrent toggles on db.`)
     
     await Promise.all(functions.map(async (fn) => {
         return await fn();
@@ -77,7 +78,7 @@ const runTest = async () => {
     console.info("Processing done.")
 
     const the_number = await fetchNumber(client, row_id);
-    console.info("The number: ", the_number)
+    console.info("The number (should be 0): ", the_number)
 
     console.info("Finished, disconnecting.")
     await client.release();
